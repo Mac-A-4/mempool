@@ -9,7 +9,12 @@
 #else
 #define MEMPOOL_EXPORT
 #endif
+
+#ifdef _MSC_VER
 #define MEMPOOL_API __cdecl
+#else
+#define MEMPOOL_API __attribute__(cdecl)
+#endif
 
 typedef struct _mempool *mempool;
 
