@@ -1,0 +1,11 @@
+*.vcxproj
+*.filters
+*.cmake
+CMakeCache.txt
+*.sln
+x64
+x86
+*.dir
+Debug
+Release
+CMakeFiles
