@@ -51,7 +51,7 @@ mempool_new_region(mempool _mempool, size_t _size) {
 
 #undef NODE_AT
 
-MEMPOOL_EXPORT mempool MEMPOOL_API
+MEMPOOL_EXPORT mempool
 mempool_create(size_t _typesize, size_t _capacity) {
     mempool result = (mempool)mempool_malloc(sizeof(struct _mempool));
     if (!result) {
@@ -77,7 +77,7 @@ mempool_delete_region(mempool_node* _region) {
     mempool_free(_region);
 }
 
-MEMPOOL_EXPORT void MEMPOOL_API
+MEMPOOL_EXPORT void
 mempool_release(mempool _mempool) {
     mempool_delete_region(_mempool->first_region);
     mempool_free(_mempool);
@@ -88,7 +88,7 @@ mempool_release(mempool _mempool) {
 #define TO_NODE(A) \
     ((mempool_node*)A - 1)
 
-MEMPOOL_EXPORT void* MEMPOOL_API
+MEMPOOL_EXPORT void*
 mempool_new(mempool _mempool) {
     if (!_mempool->first_node && !mempool_new_region(_mempool, _mempool->capacity)) {
         return 0;
@@ -98,7 +98,7 @@ mempool_new(mempool _mempool) {
     return result;
 }
 
-MEMPOOL_EXPORT void MEMPOOL_API
+MEMPOOL_EXPORT void
 mempool_delete(mempool _mempool, void* _alloc) {
     mempool_node* node = TO_NODE(_alloc);
     node->forward = _mempool->first_node;
